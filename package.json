@@ -1,0 +1,14 @@
+{
+  "name": "mercado-eleicoes",
+  "private": true,
+  "type": "module",
+  "description": "Comparação da variação de preços (IPCA/IBGE) nos governos Bolsonaro e Lula",
+  "scripts": {
+    "dados": "node scripts/atualizar-dados.mjs",
+    "test": "node --test test/*.test.mjs",
+    "start": "python3 -m http.server 8000"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

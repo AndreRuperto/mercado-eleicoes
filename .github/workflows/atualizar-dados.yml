@@ -1,0 +1,33 @@
+name: Atualizar dados do IPCA
+
+on:
+  schedule:
+    # Diariamente às 15h (horário de Brasília). O IBGE divulga o IPCA por volta do dia 10 de cada mês;
+    # o commit só acontece quando há dados novos.
+    - cron: "0 18 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm test
+      - run: npm run dados
+      - name: Commit dos dados
+        run: |
+          git add data/ipca.json
+          if git diff --cached --quiet; then
+            echo "Sem mudanças."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Atualiza dados do IPCA"
+          git push

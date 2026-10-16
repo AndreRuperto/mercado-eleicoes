@@ -1,0 +1,101 @@
+:root {
+  color-scheme: light;
+  --fundo: #f4f4f2;
+  --superficie: #fcfcfb;
+  --borda: #deddd8;
+  --texto: #0b0b0b;
+  --texto-2: #52514e;
+  --texto-3: #75736e;
+  --grade: #e6e5e0;
+  --destaque-linha: #eef3fb;
+  --serie-bolsonaro: #2a78d6;
+  --serie-lula: #1baf7a;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --fundo: #111110;
+    --superficie: #1a1a19;
+    --borda: #34332f;
+    --texto: #f0efec;
+    --texto-2: #c3c2b7;
+    --texto-3: #9a998f;
+    --grade: #2b2a27;
+    --destaque-linha: #20283a;
+    --serie-bolsonaro: #3987e5;
+    --serie-lula: #199e70;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --fundo: #111110;
+  --superficie: #1a1a19;
+  --borda: #34332f;
+  --texto: #f0efec;
+  --texto-2: #c3c2b7;
+  --texto-3: #9a998f;
+  --grade: #2b2a27;
+  --destaque-linha: #20283a;
+  --serie-bolsonaro: #3987e5;
+  --serie-lula: #199e70;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--texto);
+  font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+.conteudo { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+.topo { background: var(--superficie); border-bottom: 1px solid var(--borda); padding: 28px 0 20px; margin-bottom: 24px; }
+h1 { font-size: clamp(1.5rem, 4vw, 2.1rem); line-height: 1.2; margin: 0 0 6px; }
+h2 { font-size: 1.15rem; margin: 0; }
+.subtitulo { margin: 0; color: var(--texto-2); }
+.nota { color: var(--texto-3); font-size: 0.875rem; margin: 4px 0 0; }
+.status { color: var(--texto-2); }
+.status.erro { color: var(--texto); background: var(--superficie); border: 1px solid var(--borda); border-radius: 8px; padding: 12px 16px; }
+
+.cartoes { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 24px; }
+.cartao { background: var(--superficie); border: 1px solid var(--borda); border-radius: 12px; padding: 16px 18px; }
+.cartao-rotulo { display: flex; align-items: center; gap: 8px; color: var(--texto-2); font-size: 0.9rem; }
+.cartao-valor { font-size: 2.2rem; font-weight: 650; line-height: 1.1; margin: 8px 0 2px; font-variant-numeric: tabular-nums; }
+.cartao-detalhe { color: var(--texto-2); font-size: 0.875rem; }
+
+.painel { background: var(--superficie); border: 1px solid var(--borda); border-radius: 12px; padding: 18px; margin-bottom: 24px; }
+.painel-cabecalho { margin-bottom: 12px; }
+
+.legenda { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 20px; padding: 0; margin: 0 0 8px; color: var(--texto-2); font-size: 0.9rem; }
+.legenda li { display: flex; align-items: center; gap: 8px; }
+.amostra { display: inline-block; width: 14px; height: 4px; border-radius: 2px; }
+.amostra-bolsonaro { background: var(--serie-bolsonaro); }
+.amostra-lula { background: var(--serie-lula); }
+.grafico-area { position: relative; height: 340px; }
+.calculadora { margin: 12px 0 0; color: var(--texto-2); }
+.calculadora strong { color: var(--texto); font-variant-numeric: tabular-nums; }
+
+.filtros { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 12px; }
+.filtros label { display: flex; flex-direction: column; gap: 4px; font-size: 0.8rem; color: var(--texto-2); flex: 1 1 180px; }
+.filtros input, .filtros select {
+  font: inherit; font-size: 0.95rem; color: var(--texto); background: var(--fundo);
+  border: 1px solid var(--borda); border-radius: 8px; padding: 8px 10px; min-height: 40px;
+}
+
+.tabela-rolagem { overflow-x: auto; max-height: 560px; overflow-y: auto; border: 1px solid var(--borda); border-radius: 8px; }
+table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+th, td { padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--grade); }
+thead th { position: sticky; top: 0; background: var(--superficie); color: var(--texto-2); font-weight: 600; font-size: 0.85rem; z-index: 1; }
+.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+tbody tr { cursor: pointer; }
+tbody tr:hover, tbody tr:focus-visible { background: var(--destaque-linha); outline: none; }
+tbody tr[aria-selected="true"] { background: var(--destaque-linha); font-weight: 600; }
+.categoria { display: block; color: var(--texto-3); font-size: 0.78rem; font-weight: 400; }
+
+.metodologia ul { padding-left: 20px; margin: 10px 0; color: var(--texto-2); }
+.metodologia li { margin-bottom: 6px; }
+.metodologia strong { color: var(--texto); }
+
+@media (max-width: 560px) {
+  th, td { padding: 8px; }
+  .grafico-area { height: 260px; }
+}

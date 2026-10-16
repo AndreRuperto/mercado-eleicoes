@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Preços: Bolsonaro × Lula</title>
+  <meta name="description" content="Compare quanto os preços subiram nos governos Bolsonaro e Lula, com dados oficiais do IPCA/IBGE.">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" defer></script>
+  <script type="module" src="assets/app.js"></script>
+</head>
+<body>
+  <header class="topo">
+    <div class="conteudo">
+      <h1>Quanto subiram os preços: Bolsonaro × Lula</h1>
+      <p class="subtitulo">Variação de preços medida pelo IPCA (IBGE) em cada mandato presidencial.</p>
+    </div>
+  </header>
+
+  <main class="conteudo">
+    <p id="status" class="status" role="status">Carregando dados…</p>
+
+    <section id="resumo" class="cartoes" hidden aria-label="Resumo do índice geral"></section>
+
+    <section id="painel-grafico" class="painel" hidden>
+      <div class="painel-cabecalho">
+        <h2 id="grafico-titulo">Índice geral</h2>
+        <p id="grafico-legenda-texto" class="nota">Preço de algo que custava R$ 100 no primeiro mês de cada mandato.</p>
+      </div>
+      <ul class="legenda" aria-label="Legenda">
+        <li><span class="amostra amostra-bolsonaro" aria-hidden="true"></span>Bolsonaro (jan/2019–dez/2022)</li>
+        <li><span class="amostra amostra-lula" aria-hidden="true"></span><span id="legenda-lula">Lula (desde jan/2023)</span></li>
+      </ul>
+      <div class="grafico-area"><canvas id="grafico" role="img" aria-label="Gráfico da evolução do preço em cada mandato"></canvas></div>
+      <p id="grafico-calculadora" class="calculadora"></p>
+    </section>
+
+    <section id="painel-tabela" class="painel" hidden>
+      <div class="painel-cabecalho">
+        <h2>Produtos e serviços</h2>
+        <p class="nota">Clique em uma linha para ver o gráfico.</p>
+      </div>
+      <div class="filtros">
+        <label>Buscar
+          <input id="busca" type="search" placeholder="Ex.: arroz, gasolina, aluguel">
+        </label>
+        <label>Nível
+          <select id="nivel">
+            <option value="subitem" selected>Produtos (subitens)</option>
+            <option value="item">Itens</option>
+            <option value="subgrupo">Subgrupos</option>
+            <option value="grupo">Grupos</option>
+            <option value="todos">Todos</option>
+          </select>
+        </label>
+        <label>Métrica
+          <select id="metrica">
+            <option value="anualizado" selected>Média ao ano</option>
+            <option value="acumulado">Acumulado no mandato</option>
+          </select>
+        </label>
+        <label>Ordenar por
+          <select id="ordem">
+            <option value="nome">Nome</option>
+            <option value="bolsonaro">Bolsonaro (maior primeiro)</option>
+            <option value="lula">Lula (maior primeiro)</option>
+            <option value="diferenca" selected>Diferença (maior primeiro)</option>
+          </select>
+        </label>
+      </div>
+      <div class="tabela-rolagem">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Produto / serviço</th>
+              <th scope="col" class="num">Bolsonaro</th>
+              <th scope="col" class="num">Lula</th>
+              <th scope="col" class="num" title="Lula menos Bolsonaro, em pontos percentuais">Dif. (p.p.)</th>
+            </tr>
+          </thead>
+          <tbody id="linhas"></tbody>
+        </table>
+      </div>
+      <p id="contagem" class="nota"></p>
+    </section>
+
+    <section class="painel metodologia">
+      <h2>Como os números são calculados</h2>
+      <ul>
+        <li><strong>Fonte:</strong> IPCA do IBGE, variação mensal por grupo, subgrupo, item e subitem (Tabelas SIDRA 1419 e 7060). O IPCA mede preços ao consumidor em 16 regiões metropolitanas e capitais.</li>
+        <li><strong>Mandatos:</strong> Bolsonaro de janeiro/2019 a dezembro/2022 (48 meses); Lula de janeiro/2023 até o último mês divulgado pelo IBGE.</li>
+        <li><strong>Acumulado:</strong> as variações mensais de cada mês do mandato são compostas: (1 + v₁) × (1 + v₂) × … − 1.</li>
+        <li><strong>Média ao ano:</strong> o acumulado convertido em taxa anual equivalente. Como os mandatos têm durações diferentes (o de Lula está em curso), esta é a comparação mais justa e é a métrica padrão.</li>
+        <li><strong>Sem série completa:</strong> o IBGE revisa a cesta do IPCA periodicamente; produtos que não foram medidos em todos os meses de um mandato aparecem como "—".</li>
+        <li><strong>Limites:</strong> a variação de preços tem muitas causas além do governo (câmbio, clima, preços internacionais, pandemia, juros definidos pelo Banco Central). Os números mostram o que aconteceu em cada período, não atribuem causa.</li>
+      </ul>
+      <p id="atualizacao" class="nota"></p>
+    </section>
+  </main>
+</body>
+</html>
