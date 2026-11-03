@@ -213,6 +213,3 @@ window.addEventListener('DOMContentLoaded', () => {
   if (typeof Chart !== 'undefined') Chart.defaults.font.family = '"IBM Plex Mono", ui-monospace, monospace';
   carregar();
 });
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-  if (estado.selecionado) renderGrafico(estado.selecionado);
-});

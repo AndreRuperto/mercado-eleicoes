@@ -1,39 +1,4 @@
 :root {
-  color-scheme: light;
-  --fundo: #f5f0e6;
-  --superficie: #fffdf8;
-  --borda: #e2d9c8;
-  --texto: #1d1b16;
-  --texto-2: #57534a;
-  --texto-3: #7a7466;
-  --grade: #ebe4d6;
-  --destaque-linha: #f3ecdc;
-  --tinta: #1d1b16;
-  --tinta-contra: #f5f0e6;
-  --serie-bolsonaro: #2a78d6;
-  --serie-lula: #1baf7a;
-  --fonte-titulo: "Fraunces", Georgia, serif;
-  --fonte-texto: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --fonte-numero: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    color-scheme: dark;
-    --fundo: #12110e;
-    --superficie: #1c1a16;
-    --borda: #37332b;
-    --texto: #f2eee4;
-    --texto-2: #c6c0b1;
-    --texto-3: #9b9585;
-    --grade: #2c2922;
-    --destaque-linha: #29261f;
-    --tinta: #f2eee4;
-    --tinta-contra: #12110e;
-    --serie-bolsonaro: #3987e5;
-    --serie-lula: #199e70;
-  }
-}
-:root[data-theme="dark"] {
   color-scheme: dark;
   --fundo: #12110e;
   --superficie: #1c1a16;
@@ -47,6 +12,9 @@
   --tinta-contra: #12110e;
   --serie-bolsonaro: #3987e5;
   --serie-lula: #199e70;
+  --fonte-titulo: "Fraunces", Georgia, serif;
+  --fonte-texto: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --fonte-numero: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 }
 
 * { box-sizing: border-box; }
@@ -67,8 +35,6 @@ h2 { font-size: 1.35rem; margin: 0; }
 .topo { padding: 22px 0 36px; border-bottom: 2px solid var(--tinta); margin-bottom: 28px; }
 .marca { display: flex; align-items: center; gap: 10px; padding-bottom: 18px; margin-bottom: 28px; border-bottom: 1px solid var(--borda); }
 .marca img { display: block; }
-:root[data-theme="dark"] .marca img { filter: invert(1); }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .marca img { filter: invert(1); } }
 .marca-nome { font-family: var(--fonte-titulo); font-weight: 900; font-size: 1.2rem; letter-spacing: -0.01em; }
 .marca-nome em { font-style: italic; font-weight: 500; color: var(--texto-3); }
 .sobretitulo {
