@@ -60,17 +60,18 @@ async function carregar() {
 function renderResumo() {
   const geral = estado.itens.find((i) => i.nivel === 'geral');
   if (!geral) return;
-  $('resumo').innerHTML = MANDATOS.map((m) => {
+  const cartoes = MANDATOS.map((m) => {
     const r = geral.resultado[m.id];
     const periodo = estado.periodosMandato[m.id];
     return `
-      <article class="cartao">
+      <article class="cartao cartao-${m.id}">
         <div class="cartao-rotulo"><span class="amostra amostra-${m.id}" aria-hidden="true"></span>${m.nomeCompleto}</div>
-        <div class="cartao-valor">${pct(r?.anualizado)} <small style="font-size:1rem;font-weight:500">ao ano</small></div>
-        <div class="cartao-detalhe">Inflação (IPCA) acumulada de ${pct(r?.acumulado)} em ${periodo.length} meses
+        <div class="cartao-valor">${pct(r?.anualizado)}<small>ao ano</small></div>
+        <div class="cartao-detalhe">Inflação (IPCA) acumulada de <strong>${pct(r?.acumulado)}</strong> em ${periodo.length} meses
           (${rotuloMes(periodo[0])}–${rotuloMes(periodo.at(-1))})</div>
       </article>`;
-  }).join('');
+  });
+  $('resumo').innerHTML = `${cartoes[0]}<div class="duelo-x" aria-hidden="true">×</div>${cartoes[1]}`;
 }
 
 function itensFiltrados() {
@@ -208,7 +209,10 @@ function renderGrafico(item) {
   });
 }
 
-window.addEventListener('DOMContentLoaded', carregar);
+window.addEventListener('DOMContentLoaded', () => {
+  if (typeof Chart !== 'undefined') Chart.defaults.font.family = '"IBM Plex Mono", ui-monospace, monospace';
+  carregar();
+});
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
   if (estado.selecionado) renderGrafico(estado.selecionado);
 });

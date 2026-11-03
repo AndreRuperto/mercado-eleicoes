@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Preços: Bolsonaro × Lula</title>
   <meta name="description" content="Compare quanto os preços subiram nos governos Bolsonaro e Lula, com dados oficiais do IPCA/IBGE.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" defer></script>
   <script type="module" src="assets/app.js"></script>
@@ -12,7 +16,12 @@
 <body>
   <header class="topo">
     <div class="conteudo">
-      <h1>Quanto subiram os preços: Bolsonaro × Lula</h1>
+      <div class="marca">
+        <img src="assets/logo.svg" alt="" width="36" height="36">
+        <span class="marca-nome">Mercado <em>&amp;</em> Eleições</span>
+      </div>
+      <p class="sobretitulo">Inflação por mandato · dados oficiais do IBGE</p>
+      <h1>Quanto subiram os preços<br><span class="h1-versus">Bolsonaro <span class="x">×</span> Lula</span></h1>
       <p class="subtitulo">Variação de preços medida pelo IPCA (IBGE) em cada mandato presidencial.</p>
     </div>
   </header>
@@ -20,7 +29,7 @@
   <main class="conteudo">
     <p id="status" class="status" role="status">Carregando dados…</p>
 
-    <section id="resumo" class="cartoes" hidden aria-label="Resumo do índice geral"></section>
+    <section id="resumo" class="duelo" hidden aria-label="Resumo do índice geral"></section>
 
     <section id="painel-grafico" class="painel" hidden>
       <div class="painel-cabecalho">
@@ -35,8 +44,9 @@
       <p id="grafico-calculadora" class="calculadora"></p>
     </section>
 
-    <section id="painel-tabela" class="painel" hidden>
+    <section id="painel-tabela" class="painel cupom" hidden>
       <div class="painel-cabecalho">
+        <p class="cupom-topo">*** Cupom de preços · IPCA ***</p>
         <h2>Produtos e serviços</h2>
         <p class="nota">Clique em uma linha para ver o gráfico.</p>
       </div>
@@ -75,7 +85,7 @@
               <th scope="col">Produto / serviço</th>
               <th scope="col" class="num">Bolsonaro</th>
               <th scope="col" class="num">Lula</th>
-              <th scope="col" class="num" title="Lula menos Bolsonaro, em pontos percentuais">Dif. (p.p.)</th>
+              <th scope="col" class="num" title="Lula menos Bolsonaro, em pontos percentuais">Dif.<span class="so-largo"> (p.p.)</span></th>
             </tr>
           </thead>
           <tbody id="linhas"></tbody>
@@ -97,5 +107,12 @@
       <p id="atualizacao" class="nota"></p>
     </section>
   </main>
+
+  <footer class="rodape">
+    <div class="conteudo">
+      <span class="marca-nome">Mercado <em>&amp;</em> Eleições</span>
+      <span>Fonte: IBGE · IPCA (SIDRA). Projeto independente, sem vínculo com partidos ou candidatos.</span>
+    </div>
+  </footer>
 </body>
 </html>
